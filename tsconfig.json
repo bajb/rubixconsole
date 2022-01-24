@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "experimentalDecorators": true,
+    "moduleResolution": "Node",
+    "lib": [
+      "DOM"
+    ]
+  },
+  "include": [
+    "src",
+    "node_modules/@kubex",
+    "node_modules/@packaged-ui"
+  ],
+  "exclude": [
+    "node_modules/@kubex/app-container"
+  ]
+}
