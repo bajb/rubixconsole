@@ -5,9 +5,11 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=2, user-scalable=1, shrink-to-fit=no">
   <link href="/static/css/console.css" rel="stylesheet">
-  <script src="static/js/console.js" defer></script>
+  <script src="/static/js/console.js" defer></script>
+  <title>Example</title>
 </head>
 <body>
+
 <div id="rubix-shell">
   <header>
     HEADER
@@ -17,9 +19,9 @@
   </nav>
 
   <div x-data="{ open: false }">
-    <button @click="open = true">Expand</button>
+    <button @click="open = !open">Expand</button>
 
-    <span x-show="open">
+    <span class="hidden" :class="{'hidden': !open}">
       Content...
     </span>
   </div>
