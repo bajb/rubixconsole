@@ -37,11 +37,14 @@ html, body, #rubix-shell {
   }
 
   .menu-expander {
-    transition: transform $transitionDuration $transitionStyle;
     overflow: hidden;
   }
 
-  .expanded .menu-expander {
+  .menu-expander zn-icon {
+    transition: transform $transitionDuration $transitionStyle;
+  }
+
+  .expanded .menu-expander zn-icon {
     transform: rotate(180deg);
   }
 
