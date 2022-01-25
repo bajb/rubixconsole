@@ -1,6 +1,5 @@
 module.exports = {
-
-  content: ['./*.html'],
+  content: ['./rubix.html'],
   theme:   {
     extend: {}
   },
