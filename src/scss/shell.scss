@@ -1,0 +1,96 @@
+$shellBg: rgb(31, 41, 55);
+$shellColor: rgba(255, 255, 255, 0.95);
+$shellSize: 55px;
+$expandedMenuWidth: 240px;
+$transitionDuration: 0.3s;
+$transitionStyle: ease-in-out;
+
+html, body, #rubix-shell {
+  width: 100%;
+  height: 100%;
+}
+
+#rubix-shell {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+  #rubix-console {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  header, nav {
+    background: $shellBg;
+    color: $shellColor;
+  }
+
+  .icon-button {
+    display: inline-flex;
+    @apply justify-center;
+    @apply content-center;
+    @apply items-center  ;
+    width: $shellSize;
+    height: $shellSize;
+    cursor: pointer;
+  }
+
+  .menu-expander {
+    transition: transform $transitionDuration $transitionStyle;
+    overflow: hidden;
+  }
+
+  .expanded .menu-expander {
+    transform: rotate(180deg);
+  }
+
+  header {
+    height: $shellSize;
+    display: flex;
+
+    #primary-menu {
+      background: rgba(0, 0, 0, 0.5);
+      width: $shellSize;
+      transition: width $transitionDuration $transitionStyle;
+
+      &.expanded {
+        width: $expandedMenuWidth;
+      }
+    }
+  }
+
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: $shellSize;
+    transition: width $transitionDuration $transitionStyle;
+
+
+    .menu-expander {
+      display: none;
+    }
+
+    @screen sm {
+      flex-direction: column;
+      position: relative;
+      width: $shellSize;
+      min-width: $shellSize;
+      height: 100%;
+
+      .menu-expander {
+        display: inline-flex;
+      }
+
+      &.expanded {
+        width: $expandedMenuWidth;
+      }
+    }
+
+  }
+}
+

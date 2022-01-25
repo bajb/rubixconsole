@@ -6,34 +6,46 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=2, user-scalable=1, shrink-to-fit=no">
   <link href="/static/css/console.css" rel="stylesheet">
   <script src="/static/js/console.js" defer></script>
+  <script src="/static/js/components.js" defer></script>
   <title>Example</title>
 </head>
 <body>
 
-<div id="rubix-shell">
+<div id="rubix-shell" x-data="{ shellMenuOpen: false, appMenuOpen: false }">
   <header>
-    HEADER
+    <div id="primary-menu" :class="{'expanded': shellMenuOpen}">
+      <div class="icon-button">
+        <zn-icon library="material-outlined" src="menu"></zn-icon>
+      </div>
+      <div class="grow"></div>
+    </div>
+    <div id="secondary-menu" class="icon-button">
+      <zn-icon library="material-outlined" src="menu"></zn-icon>
+    </div>
   </header>
 
-  <nav>
-  </nav>
+  <div id="rubix-console">
+    <nav :class="{'expanded': shellMenuOpen}">
+      <div class="grow"></div>
+      <div class="icon-button menu-expander" @click="shellMenuOpen = !shellMenuOpen">
+        <zn-icon library="material-outlined" src="arrow_forward"></zn-icon>
+      </div>
+    </nav>
 
-  <div x-data="{ open: false }">
-    <button @click="open = !open">Expand</button>
+    <div id="rubix-content">
+      <main>
+        <nav :class="{'expanded': appMenuOpen}">
+          <div class="icon-button menu-expander" @click="appMenuOpen = !appMenuOpen">
+            <zn-icon library="material-outlined" src="arrow_forward"></zn-icon>
+          </div>
+        </nav>
+        Primary Content
+      </main>
 
-    <span class="hidden" :class="{'hidden': !open}">
-      Content...
-    </span>
-  </div>
-
-  <div id="rubix-content">
-    <main>
-      Primary Content
-    </main>
-
-    <aside>
-      Companion Content
-    </aside>
+      <aside>
+        Companion Content
+      </aside>
+    </div>
   </div>
 
   <footer></footer>

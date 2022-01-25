@@ -1,8 +1,10 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 import {terser} from 'rollup-plugin-terser';
 import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
+import AtImport from 'postcss-import';
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
@@ -15,7 +17,7 @@ const commonPlugins = [
   production && terser() // minify, but only in production
 ];
 
-export default {
+const shell = {
   input:   'src/console.ts',
   output:  {
     dir:            'static',
@@ -25,10 +27,36 @@ export default {
   },
   plugins: [
     postcss({
-      extract:   'css/console.css',
-      minimize:  production,
-      sourceMap: !production
-    }),
+              extract:   'css/console.css',
+              minimize:  production,
+              sourceMap: !production
+            }),
     ...commonPlugins
   ]
 };
+
+const components = {
+  input:   'src/components.ts',
+  output:  {
+    dir:            'static',
+    format:         'iife', // immediately-invoked function expression — suitable for <script> tags
+    entryFileNames: 'js/components.js',
+    sourcemap:      !production
+  },
+  plugins: [
+    resolve({browser: true, preferBuiltins: false}),
+    typescript(),
+    commonjs(),
+    postcss(
+      {
+        plugins:   [AtImport()],
+        inject:    false,
+        extract:   false,
+        minimize:  true,
+        sourceMap: false,
+      }),
+    terser(),
+  ]
+};
+
+export default [shell, components];
