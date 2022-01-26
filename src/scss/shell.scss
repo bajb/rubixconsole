@@ -13,6 +13,10 @@ html, body, #rubix-shell {
   height: 100%;
 }
 
+body {
+  min-width: 300px;
+}
+
 #rubix-shell {
   display: flex;
   flex-grow: 1;
@@ -35,6 +39,7 @@ html, body, #rubix-shell {
   }
 
   header, nav {
+    position: relative;
     background: $shellBg;
     color: $shellColor;
   }
@@ -91,12 +96,12 @@ html, body, #rubix-shell {
       }
     }
 
-    #primary-dropdown {
+    .heading-dropdown {
       position: fixed;
       display: block;
-      top: 45px;
-      right: 20px;
-      width: $expandedMenuWidth;
+      top: 50px;
+      z-index: 100;
+      width: 280px;
       height: 0;
       overflow: hidden;
       transition: height 0.1s $transitionStyle;
@@ -119,11 +124,29 @@ html, body, #rubix-shell {
         @apply text-gray-700;
       }
 
-      &.open {
-
-        overflow: auto;
-        height: 300px;
+      a:hover {
+        @apply bg-gray-100;
+        @apply text-gray-900;
       }
+
+      &.open {
+        overflow: auto;
+        height: auto;
+        max-height: 500px;
+      }
+    }
+
+    #primary-dropdown {
+      right: 20px;
+    }
+
+    .system-menu-trigger {
+      width: 35px;
+    }
+
+    #system-dropdown {
+      right: 50px;
+      width: $expandedMenuWidth;
     }
   }
 
