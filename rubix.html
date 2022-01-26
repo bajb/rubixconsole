@@ -19,13 +19,13 @@
       </div>
       <div class="grow"></div>
     </div>
-    <div id="secondary-menu" class="icon-button">
+    <div id="secondary-menu" class="icon-button" @click="appMenuOpen = !appMenuOpen">
       <zn-icon library="material-outlined" src="menu"></zn-icon>
     </div>
   </header>
 
   <div id="rubix-console">
-    <nav :class="{'expanded': shellMenuOpen}">
+    <nav class="shell-nav" :class="{'expanded': shellMenuOpen}">
       <div class="grow"></div>
       <div class="icon-button menu-expander" @click="shellMenuOpen = !shellMenuOpen">
         <zn-icon library="material-outlined" src="arrow_forward"></zn-icon>
@@ -34,16 +34,17 @@
 
     <div id="rubix-content">
       <main>
-        <nav :class="{'expanded': appMenuOpen}">
+        <nav class="app-nav" :class="{'expanded': appMenuOpen}">
+          <div class="grow"></div>
           <div class="icon-button menu-expander" @click="appMenuOpen = !appMenuOpen">
-            <zn-icon library="material-outlined" src="arrow_forward"></zn-icon>
+            <zn-icon library="material-outlined" src="last_page"></zn-icon>
           </div>
         </nav>
-        Primary Content
+        <app-container data-self-uri="/-/referrer" id="primary-app">Primary Content</app-container>
       </main>
 
       <aside>
-        Companion Content
+        <app-container data-self-uri="/-/referrer" id="secondary-app">Companion Content</app-container>
       </aside>
     </div>
   </div>

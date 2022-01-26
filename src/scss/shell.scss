@@ -1,9 +1,12 @@
+@import "appcontainer";
+
 $shellBg: rgb(31, 41, 55);
 $shellColor: rgba(255, 255, 255, 0.95);
 $shellSize: 55px;
 $expandedMenuWidth: 240px;
 $transitionDuration: 0.3s;
 $transitionStyle: ease-in-out;
+$appMenuBg: rgb(243, 244, 246);
 
 html, body, #rubix-shell {
   width: 100%;
@@ -15,15 +18,31 @@ html, body, #rubix-shell {
   flex-grow: 1;
   flex-direction: column;
 
-  #rubix-console {
+  #rubix-console, #rubix-content, main {
+    position: relative;
     flex-grow: 1;
     display: flex;
     flex-direction: row;
   }
 
+  #rubix-content {
+    transition: margin-bottom $transitionDuration $transitionStyle;
+    margin-bottom: $shellSize;
+
+    @screen sm {
+      margin-bottom: 0;
+    }
+  }
+
   header, nav {
     background: $shellBg;
     color: $shellColor;
+  }
+
+  #secondary-menu {
+    @screen sm {
+      display: none;
+    }
   }
 
   .icon-button {
@@ -57,9 +76,31 @@ html, body, #rubix-shell {
       width: $shellSize;
       transition: width $transitionDuration $transitionStyle;
 
-      &.expanded {
-        width: $expandedMenuWidth;
+
+      .icon-button zn-icon[src=menu] {
+        transition: max-width $transitionDuration $transitionStyle;
+        order: 2;
+        max-width: 4px;
       }
+
+      .icon-button zn-icon[src=more_vert] {
+        display: inline-flex;
+      }
+
+      @screen sm {
+        .icon-button zn-icon[src=menu] {
+          max-width: $shellSize;
+        }
+
+        .icon-button zn-icon[src=more_vert] {
+          display: none;
+        }
+
+        &.expanded {
+          width: $expandedMenuWidth;
+        }
+      }
+
     }
   }
 
@@ -70,30 +111,79 @@ html, body, #rubix-shell {
     position: fixed;
     bottom: 0;
     width: 100%;
+    min-width: 0;
     height: $shellSize;
-    transition: width $transitionDuration $transitionStyle;
-
+    transition: width height $transitionDuration $transitionStyle;
 
     .menu-expander {
       display: none;
     }
 
-    @screen sm {
-      flex-direction: column;
-      position: relative;
-      width: $shellSize;
-      min-width: $shellSize;
-      height: 100%;
+    &.shell-nav {
+      @screen sm {
+        flex-direction: column;
+        position: relative;
+        width: $shellSize;
+        min-width: $shellSize;
+        max-width: $shellSize;
+        height: 100%;
 
-      .menu-expander {
-        display: inline-flex;
+        .menu-expander {
+          display: inline-flex;
+        }
+
+        &.expanded {
+          width: $expandedMenuWidth;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    &.app-nav {
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: $appMenuBg;
+
+      @apply border-r border-gray-200;
+
+      @screen sm {
+        position: relative;
+        width: $shellSize;
+        min-width: $shellSize;
+
+        .menu-expander {
+          @apply text-gray-900;
+          display: inline-flex;
+        }
       }
 
       &.expanded {
         width: $expandedMenuWidth;
+        flex-shrink: 0;
       }
     }
 
+  }
+
+  main {
+    flex-direction: row;
+
+    nav {
+      z-index: 2;
+    }
+
+    app-container {
+      z-index: 1;
+    }
+  }
+
+  aside {
+    display: none;
   }
 }
 

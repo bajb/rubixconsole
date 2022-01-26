@@ -1,0 +1,24 @@
+
+app-container {
+  display: flex;
+  flex-grow: 1;
+  font-size: 15px;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: auto;
+
+  width: 100%;
+  height: 100%;
+
+  .kubex-loader {
+    display: block;
+  }
+
+  &::part(app-panel) {
+    background: transparent;
+  }
+
+  &:not([native-app]) {
+    transform: translateZ(0);
+  }
+}
