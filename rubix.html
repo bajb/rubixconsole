@@ -11,16 +11,41 @@
 </head>
 <body>
 
-<div id="rubix-shell" x-data="{ shellMenuOpen: false, appMenuOpen: false }">
+<div id="rubix-shell" x-data="{ shellMenuOpen: false, appMenuOpen: false, userMenuOpen: false }">
   <header>
     <div id="primary-menu" :class="{'expanded': shellMenuOpen}">
-      <div class="icon-button">
-        <zn-icon library="material-outlined" src="menu"></zn-icon>
-      </div>
-      <div class="grow"></div>
+      <div class="icon-button">LOGO</div>
+      <div class="grow text-center">ChargeHive</div>
     </div>
-    <div id="secondary-menu" class="icon-button" @click="appMenuOpen = !appMenuOpen">
+    <div id="secondary-menu" class="icon-button" @click="appMenuOpen = !appMenuOpen" @click.stop>
       <zn-icon library="material-outlined" src="menu"></zn-icon>
+    </div>
+    <div class="grow"></div>
+    <div id="user-menu">
+      <div class="icon-button" @click="userMenuOpen = !userMenuOpen" @click.stop>
+        <zn-icon src="brooke@bajb.net" round></zn-icon>
+      </div>
+      <div id="primary-dropdown" :class="{'open': userMenuOpen}" @click.away="userMenuOpen = false">
+        <div class="py-1">
+          <div class="flex flex-col items-center	p-4">
+            <zn-icon src="brooke@bajb.net" size="128" round></zn-icon>
+            <strong>Brooke Bryan</strong>
+            <small>brooke@bajb.net</small>
+          </div>
+        </div>
+        <div class="py-1">
+          <a href="#">Menu Item</a>
+          <a href="#">Menu Item</a>
+        </div>
+        <div class="py-1">
+          <a href="#">Menu Item</a>
+          <a href="#">Menu Item</a>
+        </div>
+
+        <div class="py-1">
+          <a href="#logout" class="text-red-900">Logout</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -34,7 +59,7 @@
 
     <div id="rubix-content">
       <main>
-        <nav class="app-nav" :class="{'expanded': appMenuOpen}">
+        <nav class="app-nav" :class="{'expanded': appMenuOpen}" @click.away="appMenuOpen = false">
           <div class="grow"></div>
           <div class="icon-button menu-expander" @click="appMenuOpen = !appMenuOpen">
             <zn-icon library="material-outlined" src="last_page"></zn-icon>
