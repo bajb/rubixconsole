@@ -82,7 +82,8 @@
 
     <div id="rubix-content">
       <main>
-        <nav class="app-nav" :class="{'expanded': appMenuOpen}" @click.away="appMenuOpen = false">
+        <nav class="app-nav" :class="{'expanded': appMenuOpen}"
+             @click.away="if (window.innerWidth < 640) { appMenuOpen = false }">
           <div class="grow"></div>
           <div class="icon-button menu-expander" @click="appMenuOpen = !appMenuOpen">
             <zn-icon library="material-outlined" src="last_page"></zn-icon>
