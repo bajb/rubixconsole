@@ -8,16 +8,14 @@ $transitionDuration: 0.3s;
 $transitionStyle: ease-in-out;
 $appMenuBg: rgb(243, 244, 246);
 
-html, body, #rubix-shell {
+html, body {
   width: 100%;
   height: 100%;
+  min-width: 300px;
+  min-height: 300px;
 }
 
 body {
-  min-width: 300px;
-}
-
-#rubix-shell {
   display: flex;
   flex-grow: 1;
   flex-direction: column;

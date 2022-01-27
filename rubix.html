@@ -9,96 +9,93 @@
   <script src="/static/js/components.js" defer></script>
   <title>Example</title>
 </head>
-<body>
+<body x-data="{ shellMenuOpen: false, appMenuOpen: false, userMenuOpen: false, systemMenuOpen: false }">
+<header>
+  <div id="primary-menu" :class="{'expanded': shellMenuOpen}">
+    <div class="icon-button">LOGO</div>
+    <div class="grow text-center">ChargeHive</div>
+  </div>
+  <div id="secondary-menu" class="icon-button" @click="appMenuOpen = !appMenuOpen" @click.stop>
+    <zn-icon library="material-outlined" src="menu"></zn-icon>
+  </div>
+  <div class="grow"></div>
+  <div class="icon-button system-menu-trigger" @click="systemMenuOpen = !systemMenuOpen" @click.stop>
+    <zn-icon library="material-outlined" src="more_vert"></zn-icon>
+  </div>
+  <div id="system-dropdown" class="heading-dropdown" :class="{'open': systemMenuOpen}"
+       @click.away="systemMenuOpen = false">
+    <div class="py-1">
+      <a href=""><span class="menu-item" data-overlay-dialog data-overlay-uri="/kx/settings">Settings</span></a>
+      <a href="/kx/integrations">Integrations</a>
+      <a href="/kx/marketplace">Marketplace</a>
+    </div>
+    <div class="py-1">
+      <a href="/kx/help" data-target="kxh--content">Help</a>
+      <a href="/kx/getting-started">Getting Started</a>
+      <a data-lightbox-uri="/kx/keys">Keyboard Shortcuts</a>
+      <a data-lightbox-uri="/kx/feedback">Report an Issue</a>
+      <a data-lightbox-uri="/kx/about">About {{ .Name }}</a>
+    </div>
 
-<div id="rubix-shell" x-data="{ shellMenuOpen: false, appMenuOpen: false, userMenuOpen: false, systemMenuOpen: false }">
-  <header>
-    <div id="primary-menu" :class="{'expanded': shellMenuOpen}">
-      <div class="icon-button">LOGO</div>
-      <div class="grow text-center">ChargeHive</div>
+  </div>
+  <div id="user-menu">
+    <div class="icon-button" @click="userMenuOpen = !userMenuOpen" @click.stop>
+      <zn-icon src="brooke@bajb.net" round size="32"></zn-icon>
     </div>
-    <div id="secondary-menu" class="icon-button" @click="appMenuOpen = !appMenuOpen" @click.stop>
-      <zn-icon library="material-outlined" src="menu"></zn-icon>
-    </div>
-    <div class="grow"></div>
-    <div class="icon-button system-menu-trigger" @click="systemMenuOpen = !systemMenuOpen" @click.stop>
-      <zn-icon library="material-outlined" src="more_vert"></zn-icon>
-    </div>
-    <div id="system-dropdown" class="heading-dropdown" :class="{'open': systemMenuOpen}"
-         @click.away="systemMenuOpen = false">
+    <div id="primary-dropdown" class="heading-dropdown" :class="{'open': userMenuOpen}"
+         @click.away="userMenuOpen = false">
       <div class="py-1">
-        <a href=""><span class="menu-item" data-overlay-dialog data-overlay-uri="/kx/settings">Settings</span></a>
-        <a href="/kx/integrations">Integrations</a>
-        <a href="/kx/marketplace">Marketplace</a>
-      </div>
-      <div class="py-1">
-        <a href="/kx/help" data-target="kxh--content">Help</a>
-        <a href="/kx/getting-started">Getting Started</a>
-        <a data-lightbox-uri="/kx/keys">Keyboard Shortcuts</a>
-        <a data-lightbox-uri="/kx/feedback">Report an Issue</a>
-        <a data-lightbox-uri="/kx/about">About {{ .Name }}</a>
-      </div>
-
-    </div>
-    <div id="user-menu">
-      <div class="icon-button" @click="userMenuOpen = !userMenuOpen" @click.stop>
-        <zn-icon src="brooke@bajb.net" round size="32"></zn-icon>
-      </div>
-      <div id="primary-dropdown" class="heading-dropdown" :class="{'open': userMenuOpen}"
-           @click.away="userMenuOpen = false">
-        <div class="py-1">
-          <div class="flex p-4">
-            <zn-icon src="brooke@bajb.net" size="96" round></zn-icon>
-            <div class="flex flex-col grow justify-center	items-center">
-              <strong>Brooke Bryan</strong>
-              <small>brooke@bajb.net</small>
-            </div>
+        <div class="flex p-4">
+          <zn-icon src="brooke@bajb.net" size="96" round></zn-icon>
+          <div class="flex flex-col grow justify-center	items-center">
+            <strong>Brooke Bryan</strong>
+            <small>brooke@bajb.net</small>
           </div>
         </div>
-        <div class="py-1">
-          <a href="">Account Settings</a>
-        </div>
-        <div class="py-1">
-          <a href=""><span
-            class="menu-item"><span>Invite People</span><br/>
+      </div>
+      <div class="py-1">
+        <a href="">Account Settings</a>
+      </div>
+      <div class="py-1">
+        <a href=""><span
+          class="menu-item"><span>Invite People</span><br/>
             <small>Add or invite people to the team</small></span></a>
-          <a href="/kx/users">Manage Members</a>
-        </div>
-
-        <div class="py-1">
-          <a href="#logout"><span class="text-red-600">Logout</span></a>
-        </div>
+        <a href="/kx/users">Manage Members</a>
       </div>
-    </div>
-  </header>
 
-  <div id="rubix-console">
-    <nav class="shell-nav" :class="{'expanded': shellMenuOpen}">
-      <div class="grow"></div>
-      <div class="icon-button menu-expander" @click="shellMenuOpen = !shellMenuOpen">
-        <zn-icon library="material-outlined" src="arrow_forward"></zn-icon>
+      <div class="py-1">
+        <a href="#logout"><span class="text-red-600">Logout</span></a>
       </div>
-    </nav>
-
-    <div id="rubix-content">
-      <main>
-        <nav class="app-nav" :class="{'expanded': appMenuOpen}"
-             @click.away="if (window.innerWidth < 640) { appMenuOpen = false }">
-          <div class="grow"></div>
-          <div class="icon-button menu-expander" @click="appMenuOpen = !appMenuOpen">
-            <zn-icon library="material-outlined" src="last_page"></zn-icon>
-          </div>
-        </nav>
-        <app-container data-self-uri="/-/referrer" id="primary-app">Primary Content</app-container>
-      </main>
-
-      <aside>
-        <app-container data-self-uri="/-/referrer" id="secondary-app">Companion Content</app-container>
-      </aside>
     </div>
   </div>
+</header>
 
-  <footer></footer>
+<div id="rubix-console">
+  <nav class="shell-nav" :class="{'expanded': shellMenuOpen}">
+    <div class="grow"></div>
+    <div class="icon-button menu-expander" @click="shellMenuOpen = !shellMenuOpen">
+      <zn-icon library="material-outlined" src="arrow_forward"></zn-icon>
+    </div>
+  </nav>
+
+  <div id="rubix-content">
+    <main>
+      <nav class="app-nav" :class="{'expanded': appMenuOpen}"
+           @click.away="if (window.innerWidth < 640) { appMenuOpen = false }">
+        <div class="grow"></div>
+        <div class="icon-button menu-expander" @click="appMenuOpen = !appMenuOpen">
+          <zn-icon library="material-outlined" src="last_page"></zn-icon>
+        </div>
+      </nav>
+      <app-container data-self-uri="/-/referrer" id="primary-app">Primary Content</app-container>
+    </main>
+
+    <aside>
+      <app-container data-self-uri="/-/referrer" id="secondary-app">Companion Content</app-container>
+    </aside>
+  </div>
 </div>
+
+<footer></footer>
 </body>
 </html>
