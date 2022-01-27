@@ -19,214 +19,213 @@ body {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+}
 
-  #rubix-console, #rubix-content, main {
-    position: relative;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
+#rubix-console, #rubix-content, main {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+#rubix-content {
+  transition: margin-bottom $transitionDuration $transitionStyle;
+  margin-bottom: $shellSize;
+
+  @screen sm {
+    margin-bottom: 0;
   }
+}
 
-  #rubix-content {
-    transition: margin-bottom $transitionDuration $transitionStyle;
-    margin-bottom: $shellSize;
+header, nav {
+  position: relative;
+  background: $shellBg;
+  color: $shellColor;
+}
 
-    @screen sm {
-      margin-bottom: 0;
-    }
-  }
-
-  header, nav {
-    position: relative;
-    background: $shellBg;
-    color: $shellColor;
-  }
-
-  #secondary-menu {
-    @screen sm {
-      display: none;
-    }
-  }
-
-  .icon-button {
-    overflow: hidden;
-    display: inline-flex;
-    @apply justify-center;
-    @apply content-center;
-    @apply items-center  ;
-    width: $shellSize;
-    height: $shellSize;
-    cursor: pointer;
-    flex-shrink: 0;
-    user-select: none;
-  }
-
-  .menu-expander {
-    overflow: hidden;
-  }
-
-  .menu-expander zn-icon {
-    transition: transform $transitionDuration $transitionStyle;
-  }
-
-  .expanded .menu-expander zn-icon {
-    transform: rotate(180deg);
-  }
-
-  header {
-    height: $shellSize;
-    display: flex;
-
-    #primary-menu {
-      display: none;
-
-      @screen sm {
-        display: flex;
-        @apply items-center;
-        background: rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-        width: $shellSize;
-        transition: width $transitionDuration $transitionStyle;
-
-        &.expanded {
-          width: $expandedMenuWidth;
-        }
-      }
-    }
-
-    .heading-dropdown {
-      position: fixed;
-      display: block;
-      top: 50px;
-      z-index: 100;
-      width: 280px;
-      height: 0;
-      overflow: hidden;
-      transition: height 0.1s $transitionStyle;
-
-      background: white;
-      @apply text-gray-900;
-      @apply rounded-lg;
-      @apply ring-1;
-      @apply shadow-lg;
-      @apply ring-black;
-      @apply ring-opacity-5;
-      @apply divide-y;
-      @apply divide-gray-200;
-
-      a {
-        @apply block;
-        @apply px-4;
-        @apply py-2;
-        @apply text-sm;
-        @apply text-gray-700;
-      }
-
-      a:hover {
-        @apply bg-gray-100;
-        @apply text-gray-900;
-      }
-
-      &.open {
-        overflow: auto;
-        height: auto;
-        max-height: 500px;
-      }
-    }
-
-    #primary-dropdown {
-      right: 20px;
-    }
-
-    .system-menu-trigger {
-      width: 35px;
-    }
-
-    #system-dropdown {
-      right: 50px;
-      width: $expandedMenuWidth;
-    }
-  }
-
-
-  nav {
-    display: flex;
-    flex-direction: row;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    min-width: 0;
-    height: $shellSize;
-
-    .menu-expander {
-      display: none;
-    }
-
-    &.shell-nav {
-      @screen sm {
-        flex-direction: column;
-        position: relative;
-        min-width: $shellSize;
-        max-width: $shellSize;
-        transition: max-width $transitionDuration $transitionStyle;
-        height: 100%;
-
-        .menu-expander {
-          display: inline-flex;
-        }
-
-        &.expanded {
-          max-width: $expandedMenuWidth;
-          flex-shrink: 0;
-        }
-      }
-    }
-
-    &.app-nav {
-      flex-direction: column;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 100%;
-      background: $appMenuBg;
-
-      @apply border-r border-gray-200;
-
-      @screen sm {
-        position: relative;
-        width: $shellSize;
-        min-width: $shellSize;
-
-        .menu-expander {
-          @apply text-gray-900;
-          display: inline-flex;
-        }
-      }
-
-      &.expanded {
-        width: $expandedMenuWidth;
-        flex-shrink: 0;
-      }
-    }
-
-  }
-
-  main {
-    flex-direction: row;
-
-    nav {
-      z-index: 2;
-    }
-
-    app-container {
-      z-index: 1;
-    }
-  }
-
-  aside {
+#secondary-menu {
+  @screen sm {
     display: none;
   }
 }
 
+.icon-button {
+  overflow: hidden;
+  display: inline-flex;
+  @apply justify-center;
+  @apply content-center;
+  @apply items-center  ;
+  width: $shellSize;
+  height: $shellSize;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.menu-expander {
+  overflow: hidden;
+}
+
+.menu-expander zn-icon {
+  transition: transform $transitionDuration $transitionStyle;
+}
+
+.expanded .menu-expander zn-icon {
+  transform: rotate(180deg);
+}
+
+header {
+  height: $shellSize;
+  display: flex;
+
+  #primary-menu {
+    display: none;
+
+    @screen sm {
+      display: flex;
+      @apply items-center;
+      background: rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      width: $shellSize;
+      transition: width $transitionDuration $transitionStyle;
+
+      &.expanded {
+        width: $expandedMenuWidth;
+      }
+    }
+  }
+
+  .heading-dropdown {
+    position: fixed;
+    display: block;
+    top: 50px;
+    z-index: 100;
+    width: 280px;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.1s $transitionStyle;
+
+    background: white;
+    @apply text-gray-900;
+    @apply rounded-lg;
+    @apply ring-1;
+    @apply shadow-lg;
+    @apply ring-black;
+    @apply ring-opacity-5;
+    @apply divide-y;
+    @apply divide-gray-200;
+
+    a {
+      @apply block;
+      @apply px-4;
+      @apply py-2;
+      @apply text-sm;
+      @apply text-gray-700;
+    }
+
+    a:hover {
+      @apply bg-gray-100;
+      @apply text-gray-900;
+    }
+
+    &.open {
+      overflow: auto;
+      height: auto;
+      max-height: 500px;
+    }
+  }
+
+  #primary-dropdown {
+    right: 20px;
+  }
+
+  .system-menu-trigger {
+    width: 35px;
+  }
+
+  #system-dropdown {
+    right: 50px;
+    width: $expandedMenuWidth;
+  }
+}
+
+
+nav {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-width: 0;
+  height: $shellSize;
+
+  .menu-expander {
+    display: none;
+  }
+
+  &.shell-nav {
+    @screen sm {
+      flex-direction: column;
+      position: relative;
+      min-width: $shellSize;
+      max-width: $shellSize;
+      transition: max-width $transitionDuration $transitionStyle;
+      height: 100%;
+
+      .menu-expander {
+        display: inline-flex;
+      }
+
+      &.expanded {
+        max-width: $expandedMenuWidth;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &.app-nav {
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: $appMenuBg;
+
+    @apply border-r border-gray-200;
+
+    @screen sm {
+      position: relative;
+      width: $shellSize;
+      min-width: $shellSize;
+
+      .menu-expander {
+        @apply text-gray-900;
+        display: inline-flex;
+      }
+    }
+
+    &.expanded {
+      width: $expandedMenuWidth;
+      flex-shrink: 0;
+    }
+  }
+
+}
+
+main {
+  flex-direction: row;
+
+  nav {
+    z-index: 2;
+  }
+
+  app-container {
+    z-index: 1;
+  }
+}
+
+aside {
+  display: none;
+}
