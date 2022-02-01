@@ -19,7 +19,8 @@
     <zn-icon library="material-outlined" src="menu"></zn-icon>
   </div>
   <div class="grow"></div>
-  <div class="icon-button system-menu-trigger" @click="systemMenuOpen = !systemMenuOpen" @click.stop>
+  <div class="icon-button system-menu-trigger" @click="systemMenuOpen = !systemMenuOpen; userMenuOpen = false"
+       @click.stop>
     <zn-icon library="material-outlined" src="more_vert"></zn-icon>
   </div>
   <div id="system-dropdown" class="heading-dropdown" :class="{'open': systemMenuOpen}"
@@ -39,7 +40,7 @@
 
   </div>
   <div id="user-menu">
-    <div class="icon-button" @click="userMenuOpen = !userMenuOpen" @click.stop>
+    <div class="icon-button" @click="userMenuOpen = !userMenuOpen; systemMenuOpen = false" @click.stop>
       <zn-icon src="brooke@bajb.net" round size="32"></zn-icon>
     </div>
     <div id="primary-dropdown" class="heading-dropdown" :class="{'open': userMenuOpen}"

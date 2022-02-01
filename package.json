@@ -4,10 +4,8 @@
   "description": "",
   "main": "src/console.js",
   "scripts": {
-    "build:ts": "rollup -c",
-    "watch:ts": "rollup -c --watch",
-    "build": "run-p build:*",
-    "watch": "run-p watch:*"
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
   },
   "browserslist": [
     "defaults",
