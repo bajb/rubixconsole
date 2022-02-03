@@ -11,7 +11,7 @@
 </head>
 <body
   class="flex flex-row flex-nowrap"
-  x-data="{ shellMenuOpen: false, appMenuOpen: false, userMenuOpen: false, systemMenuOpen: false, helpMenuOpen: false }">
+  x-data="{ shellMenuOpen: false, appMenuOpen: false, userMenuOpen: false, systemMenuOpen: false, helpMenuOpen: false, systemAppsMenu: false }">
 
 <div class="flex flex-col grow">
   <header class="relative">
@@ -23,31 +23,71 @@
       <zn-icon library="material-outlined" src="menu"></zn-icon>
     </div>
     <div class="grow"></div>
+    <div class="relative">
+      <div class="icon-button system-menu-trigger"
+           @click="systemAppsMenu = !systemAppsMenu; systemMenuOpen = false; userMenuOpen = false"
+           @click.stop>
+        <zn-icon library="material-outlined" src="apps"></zn-icon>
+      </div>
+      <div
+        class="fixed z-20 height bg-white border shadow rounded-lg max-w-[365px] w-full right-[100px] top-[50px]"
+        x-show="systemAppsMenu"
+        @click.away="systemAppsMenu = false">
+        <div
+          x-data="{apps: ['Dashboard', 'Phabricator', 'Customers', 'Communication', 'LucidCube']}">
+          <div class="relative mx-auto text-gray-600 mb-4">
+            <input
+              class="border-b rounded-t border-gray-200 bg-white h-12 w-full px-5 pr-8 text-sm focus:outline-none"
+              type="search" name="search" placeholder="Search">
+            <button type="submit" class="absolute right-0 top-0 mt-3 mr-3">
+              <zn-icon library="material-outlined" src="search" class="text-gray-600"></zn-icon>
+
+            </button>
+          </div>
+          <div class="flex flex-wrap mb-4">
+            <template x-for="app in apps">
+              <a href="#"
+                 class="flex w-[120px] flex-col rounded-lg items-center hover:bg-gray-50 p-4 hover:text-gray-200">
+                <div class="h-12 w-12 bg-primary justify-center items-center flex rounded-full">
+                  <zn-icon library="material-outlined" src="request_quote"
+                           class="w-6 h-6 stroke-current contents"></zn-icon>
+                </div>
+                <div class="mt-2 text-center text-gray-600 w-full overflow-hidden overflow-ellipsis text-sm"
+                     x-transition.duration.200ms x-text="app"></div>
+              </a>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="icon-button" @click="helpMenuOpen = !helpMenuOpen;" @click.stop>
       <zn-icon library="material-outlined" src="help_outline"></zn-icon>
     </div>
-    <div class="icon-button system-menu-trigger" @click="systemMenuOpen = !systemMenuOpen; userMenuOpen = false"
-         @click.stop>
-      <zn-icon library="material-outlined" src="more_vert"></zn-icon>
-    </div>
-    <div id="system-dropdown" class="heading-dropdown" :class="{'open': systemMenuOpen}"
-         @click.away="systemMenuOpen = false">
-      <div class="py-1">
-        <a href=""><span class="menu-item" data-overlay-dialog data-overlay-uri="/kx/settings">Settings</span></a>
-        <a href="/kx/integrations">Integrations</a>
-        <a href="/kx/marketplace">Marketplace</a>
+    <div class="relative">
+      <div class="icon-button system-menu-trigger"
+           @click="systemMenuOpen = !systemMenuOpen; userMenuOpen = false; systemAppsMenu = false"
+           @click.stop>
+        <zn-icon library="material-outlined" src="more_vert"></zn-icon>
       </div>
-      <div class="py-1">
-        <a href="/kx/help" data-target="kxh--content">Help</a>
-        <a href="/kx/getting-started">Getting Started</a>
-        <a data-lightbox-uri="/kx/keys">Keyboard Shortcuts</a>
-        <a data-lightbox-uri="/kx/feedback">Report an Issue</a>
-        <a data-lightbox-uri="/kx/about">About {{ .Name }}</a>
+      <div id="system-dropdown" class="heading-dropdown" :class="{'open': systemMenuOpen}"
+           @click.away="systemMenuOpen = false">
+        <div class="py-1">
+          <a href=""><span class="menu-item" data-overlay-dialog data-overlay-uri="/kx/settings">Settings</span></a>
+          <a href="/kx/integrations">Integrations</a>
+          <a href="/kx/marketplace">Marketplace</a>
+        </div>
+        <div class="py-1">
+          <a href="/kx/help" data-target="kxh--content">Help</a>
+          <a href="/kx/getting-started">Getting Started</a>
+          <a data-lightbox-uri="/kx/keys">Keyboard Shortcuts</a>
+          <a data-lightbox-uri="/kx/feedback">Report an Issue</a>
+          <a data-lightbox-uri="/kx/about">About {{ .Name }}</a>
+        </div>
       </div>
-
     </div>
     <div id="user-menu">
-      <div class="icon-button" @click="userMenuOpen = !userMenuOpen; systemMenuOpen = false" @click.stop>
+      <div class="icon-button" @click="userMenuOpen = !userMenuOpen; systemMenuOpen = false; systemAppsMenu = false;"
+           @click.stop>
         <zn-icon src="brooke@bajb.net" round size="32"></zn-icon>
       </div>
       <div id="primary-dropdown" class="heading-dropdown" :class="{'open': userMenuOpen}"
