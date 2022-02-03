@@ -96,7 +96,7 @@ header {
   }
 
   .heading-dropdown {
-    position: fixed;
+    position: absolute;
     display: block;
     top: 50px;
     z-index: 100;
@@ -136,7 +136,7 @@ header {
   }
 
   #primary-dropdown {
-    right: 20px;
+    right: 5px;
   }
 
   .system-menu-trigger {
@@ -144,7 +144,7 @@ header {
   }
 
   #system-dropdown {
-    right: 50px;
+    right: 0;
     width: $expandedMenuWidth;
   }
 }
