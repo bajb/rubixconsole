@@ -24,7 +24,7 @@
     </div>
     <div class="grow"></div>
     <div class="icon-button" @click="helpMenuOpen = !helpMenuOpen;" @click.stop>
-      <zn-icon library="material-outlined" src="help"></zn-icon>
+      <zn-icon library="material-outlined" src="help_outline"></zn-icon>
     </div>
     <div class="icon-button system-menu-trigger" @click="systemMenuOpen = !systemMenuOpen; userMenuOpen = false"
          @click.stop>
@@ -79,15 +79,16 @@
   </header>
   <div id="rubix-console">
     <nav class="shell-nav" :class="{'expanded': shellMenuOpen}">
-      <div class="flex justify-center w-full md:w-auto" :class="{'justify-center': !shellMenuOpen}">
-        <div class="flex md:flex-col grow justify-around md:justify-start items-center md:mt-3"
-             x-data="{links: ['Dashboard', 'Customers', 'Phabricator', 'Communicate']}">
+      <div class="flex w-full">
+        <div
+          class="flex md:w-full md:flex-col overflow-x-scroll md:overflow-x-hidden flex-grow md:flex-grow-0 md:justify-start items-center md:items-start md:mt-3"
+          x-data="{links: ['Dashboard', 'Customers', 'Phabricator', 'Communicate']}">
           <template x-for="link in links">
             <a href="#"
-               :class="{'md:w-12 justify-center': !shellMenuOpen, 'md:w-full': shellMenuOpen}"
-               class="flex items-center flex-col md:flex-row md:h-12 px-4 md:mt-2 md:w-12 h-full rounded hover:bg-gray-600 hover:text-gray-200">
-              <zn-icon library="material-outlined" src="request_quote" class="w-6 h-6 stroke-current"></zn-icon>
-              <div class="md:ml-2 font-light text-xs mt-1 md:mt-0 md:text-sm" :class="{'md:hidden': !shellMenuOpen}"
+               class="flex md:w-full flex-col pt-1 md:pt-0 flex-grow items-center md:flex-grow-0 md:flex-row md:h-10 px-4 md:mt-2 h-full hover:bg-gray-700 hover:text-gray-200 opacity-75 hover:opacity-100">
+              <zn-icon library="material-outlined" src="request_quote"
+                       class="w-6 h-6 stroke-current contents"></zn-icon>
+              <div class="md:ml-4 font-light text-xs mt-1 md:mt-0 md:text-base"
                    x-transition.duration.200ms
                    x-text="link"></div>
             </a>
@@ -118,7 +119,7 @@
   </div>
 </div>
 
-<div class="flex absolute w-full md:w-auto md:relative inset-0 z-20" x-show="helpMenuOpen">
+<div class="flex absolute w-full md:w-auto md:relative inset-0 z-20" x-transition x-show="helpMenuOpen">
   <div class="w-screen md:max-w-sm lg:max-w-md md:border-l">
     <div class="h-full flex flex-col bg-white overflow-y-scroll">
       <div class="px-4 py-3 min-h-[55px] sm:px-6 bg-gray-100">
