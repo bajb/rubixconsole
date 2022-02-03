@@ -1,7 +1,11 @@
 module.exports = {
   content: ['./rubix.html'],
   theme:   {
-    extend: {}
+    extend: {
+      screens: {
+        'md': '640px'
+      }
+    }
   },
   plugins: []
 };
