@@ -23,6 +23,9 @@
       <zn-icon library="material-outlined" src="menu"></zn-icon>
     </div>
     <div class="grow"></div>
+    <div class="icon-button" @click="helpMenuOpen = !helpMenuOpen;" @click.stop>
+      <zn-icon library="material-outlined" src="help_outline"></zn-icon>
+    </div>
     <div class="relative">
       <div class="icon-button system-menu-trigger"
            @click="systemAppsMenu = !systemAppsMenu; systemMenuOpen = false; userMenuOpen = false"
@@ -30,7 +33,7 @@
         <zn-icon library="material-outlined" src="apps"></zn-icon>
       </div>
       <div
-        class="absolute z-20 height bg-white border shadow rounded-lg min-w-[363px] max-h-[450px] overflow-y-scroll w-full right-0 top-[50px]"
+        class="fixed inset md:top-[unset] md:bottom-[unset] md:left-[unset] md:absolute z-20 height bg-white border shadow rounded-lg min-w-[363px] max-h-[450px] overflow-y-scroll w-full right-0 md:top-[50px]"
         x-show="systemAppsMenu"
         @click.away="systemAppsMenu = false">
         <div
@@ -59,9 +62,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="icon-button" @click="helpMenuOpen = !helpMenuOpen;" @click.stop>
-      <zn-icon library="material-outlined" src="help_outline"></zn-icon>
     </div>
     <div class="relative">
       <div class="icon-button system-menu-trigger"
