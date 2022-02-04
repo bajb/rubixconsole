@@ -19,6 +19,6 @@ app-container {
   }
 
   &:not([native-app]) {
-    transform: translateZ(0);
+    //transform: translateZ(0);
   }
 }

@@ -105,22 +105,14 @@ header {
     overflow: hidden;
     transition: height 0.1s $transitionStyle;
 
-    background: white;
-    @apply text-gray-900;
-    @apply rounded-lg;
-    @apply ring-1;
-    @apply shadow-lg;
-    @apply ring-black;
-    @apply ring-opacity-5;
-    @apply divide-y;
-    @apply divide-gray-200;
+    @apply bg-white text-gray-900 rounded-lg ring-1 shadow-lg ring-black ring-opacity-5 divide-y divide-gray-200;
 
     a {
-      @apply block;
-      @apply px-4;
-      @apply py-2;
-      @apply text-sm;
-      @apply text-gray-700;
+      @apply block px-4 py-2 text-sm text-gray-700;
+
+      &.with-icon {
+        @apply flex items-center justify-between;
+      }
     }
 
     a:hover {
@@ -224,9 +216,5 @@ main {
   app-container {
     z-index: 1;
   }
-}
-
-aside {
-  display: none;
 }
 
