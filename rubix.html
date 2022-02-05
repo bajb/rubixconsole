@@ -76,6 +76,13 @@
           <a href="/kx/integrations">Integrations</a>
           <a href="/kx/marketplace">Marketplace</a>
         </div>
+
+        <div class="py-1">
+          <a href=""><span
+            class="menu-item"><span>Invite People</span><br/>
+            <small>Add or invite people to the team</small></span></a>
+          <a href="/kx/users">Manage Members</a>
+        </div>
         <div class="py-1">
           <a href="/kx/help" data-target="kxh--content">Help</a>
           <a href="/kx/getting-started">Getting Started</a>
@@ -104,16 +111,10 @@
         <div class="py-1">
           <a href="">Account Settings</a>
         </div>
-        <div class="py-1">
-          <a href=""><span
-            class="menu-item"><span>Invite People</span><br/>
-            <small>Add or invite people to the team</small></span></a>
-          <a href="/kx/users">Manage Members</a>
-        </div>
 
         <div class="py-1">
           <a href="#" class="with-icon" @click="workspaceMenuOpen = !workspaceMenuOpen" @click.stop>
-            Manage Workspace
+            Switch Workspace
             <zn-icon :class="{'rotate-180': workspaceMenuOpen}" library="material-outlined" src="expand_more"
                      class="mr-2"></zn-icon>
           </a>
@@ -191,18 +192,13 @@
         </nav>
         <div class="flex flex-col w-full text-gray-800">
           <div class="bg-white">
-            <h3 id="page-title" class="text-xl grow-1 mx-4 pl-2 mt-3 mb-1">Hello World</h3>
+            <h3 id="page-title">Hello World</h3>
           </div>
           <div class="bg-white border-b">
-            <div id="page-navigation" class="flex flex-row" x-data="{items: []}">
-              <a
-                class="py-2 px-6  font-light whitespace-nowrap hover:border-b-2 text-selected hover:text-selected hover:border-selected border-b-2 border-selected uppercase"
-                href="#">Selected</a>
+            <div id="page-navigation" class="flex flex-row" x-data="{items: ['one', 'two']}">
+              <a class="active" href="#">Selected</a>
               <template x-for="item in items">
-                <a
-                  class="py-4 px-6 font-light whitespace-nowrap border-b-2 border-transparent hover:text-selected hover:border-b-2 hover:border-selected"
-                  x-text="item"
-                  href="#"></a>
+                <a x-text="item" href="#">Item</a>
               </template>
             </div>
           </div>
