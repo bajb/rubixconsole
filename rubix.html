@@ -137,11 +137,11 @@
     <nav class="shell-nav" :class="{'expanded': shellMenuOpen}">
       <div class="flex w-full">
         <div
-          class="flex md:w-full md:flex-col overflow-x-scroll md:overflow-x-hidden flex-grow md:flex-grow-0 md:justify-start items-center md:items-start"
+          class="shell-nav__container"
           x-data="{links: ['Dashboard', 'Customers', 'Phabricator', 'Communicate']}">
           <template x-for="link in links">
             <a href="#"
-               class="flex md:w-full flex-col pt-1 md:pt-0 flex-grow items-center md:flex-grow-0 md:flex-row md:h-10 px-4 md:mt-2 h-full hover:bg-gray-700 hover:text-gray-200 opacity-75 hover:opacity-100">
+               class="shell-nav__link">
               <zn-icon library="material-outlined" src="request_quote"
                        class="w-6 h-6 stroke-current contents"></zn-icon>
               <div class="md:ml-4 font-light text-xs mt-1 md:mt-0 md:text-base"

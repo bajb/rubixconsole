@@ -242,3 +242,18 @@ main {
 [x-cloak] {
   display: none !important;
 }
+
+
+.shell-nav {
+  &__container {
+    @apply flex overflow-x-scroll flex-grow items-center;
+    @apply md:w-full md:flex-col md:overflow-x-hidden md:flex-grow-0 md:justify-start md:items-start;
+  }
+
+  &__link {
+    height: $shellSize;
+    @apply flex flex-col pt-1 flex-grow items-center px-4 md:mt-2 opacity-75;
+    @apply md:w-full md:pt-0 md:flex-grow-0 md:flex-row;
+    @apply hover:bg-gray-700 hover:text-gray-200 hover:opacity-100;
+  }
+}
