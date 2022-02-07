@@ -137,7 +137,7 @@
     <nav class="shell-nav" :class="{'expanded': shellMenuOpen}">
       <div class="flex w-full">
         <div
-          class="flex md:w-full md:flex-col overflow-x-scroll md:overflow-x-hidden flex-grow md:flex-grow-0 md:justify-start items-center md:items-start md:mt-3"
+          class="flex md:w-full md:flex-col overflow-x-scroll md:overflow-x-hidden flex-grow md:flex-grow-0 md:justify-start items-center md:items-start"
           x-data="{links: ['Dashboard', 'Customers', 'Phabricator', 'Communicate']}">
           <template x-for="link in links">
             <a href="#"
@@ -206,10 +206,10 @@
         </div>
       </main>
 
-      <aside class="flex flex-row relative" x-data="{companionAppOpen: false}">
-        <div class="absolute inset-0 right-[unset] w-[2px] cursor-ew-resize"></div>
-        <app-container data-self-uri="/-/referrer" id="secondary-app" class="border-l sm:min-w-[320px]"
-                       x-show="companionAppOpen" x-cloak>
+      <aside class="flex flex-row relative" x-data="companionApp">
+        <div id="companion-resizer" class="absolute inset-0 right-[unset] w-[2px] cursor-ew-resize"></div>
+        <app-container data-self-uri="/-/referrer" id="secondary-app" class="border-l min-w-[320px] max-w-[45vw]"
+                       x-show="open" x-cloak>
           Companion Content
         </app-container>
         <div class="flex h-full min-w-[55px] max-w-[55px] bg-[#f3f4f6] text-white flex-col text-gray-700 border-l">
@@ -217,8 +217,8 @@
           </div>
           <div class="grow"></div>
           <div class="icon-button menu-expander">
-            <zn-icon library="material-outlined" src="arrow_forward" :class="{'rotate-180': !companionAppOpen}"
-                     @click="companionAppOpen = !companionAppOpen"></zn-icon>
+            <zn-icon library="material-outlined" src="arrow_forward" :class="{'rotate-180': !open}"
+                     @click="toggle"></zn-icon>
           </div>
         </div>
       </aside>

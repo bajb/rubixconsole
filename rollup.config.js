@@ -11,9 +11,9 @@ import AtImport from 'postcss-import';
 const production = !process.env.ROLLUP_WATCH;
 
 const commonPlugins = [
-  resolve({browser: true, preferBuiltins: false}), // tells Rollup how to find node_modules packages
+  resolve({browser: true, preferBuiltins: false, extensions: ['.js', '.ts']}), // tells Rollup how to find node_modules packages
   commonjs(), // converts date-fns to ES modules
-  babel({babelHelpers: 'bundled'}),
+  babel({babelHelpers: 'bundled', extensions: ['.js', '.ts']}),
   production && terser() // minify, but only in production
 ];
 
