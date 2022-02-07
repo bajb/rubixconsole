@@ -162,20 +162,20 @@
              @click.away="if (window.innerWidth < 640) { appMenuOpen = false }">
           <div class="flex w-full mt-3 mb-2">
             <a href="#"
-               class="flex md:w-full flex-col pt-1 md:pt-0 items-center md:flex-row md:h-10 px-4 md:mt-2 h-full opacity-75 hover:opacity-100">
+               class="flex w-full items-center flex-row h-10 px-4 mt-2 h-full opacity-75 hover:opacity-100">
               <div class="w-6 shrink-0 h-6">
                 <zn-icon library="material-outlined" src="request_quote" size="24"
                          class="stroke-current contents"></zn-icon>
               </div>
-              <div class="md:ml-4 text-lg mt-1 md:mt-0 uppercase">Customers</div>
+              <div class="ml-4 text-lg mt-0 uppercase">Customers</div>
             </a>
           </div>
           <div
-            class="flex md:w-full md:flex-col overflow-x-scroll md:overflow-x-hidden flex-grow md:flex-grow-0 md:justify-start items-center md:items-start"
+            class="flex w-full flex-col overflow-x-hidden justify-start"
             x-data="{links: ['Dashboard', 'Customers', 'Phabricator', 'Communicate']}">
             <template x-for="link in links">
               <a href="#"
-                 class="flex md:w-full flex-col pt-1 md:pt-0 items-center md:flex-row h-9 px-4 md:mt-1 h-full opacity-75 hover:opacity-100">
+                 class="flex w-full flex-row h-9 px-4 mt-1 h-full opacity-75 hover:opacity-100">
                 <div class="w-6 shrink-0 h-6">
                   <!--                  <zn-icon library="material-outlined" src="request_quote" size="24" class="stroke-current contents"></zn-icon>-->
                 </div>
@@ -208,7 +208,7 @@
 
       <aside class="flex flex-row relative" x-data="companionApp">
         <div id="companion-resizer" class="absolute inset-0 right-[unset] w-[2px] cursor-ew-resize"></div>
-        <app-container data-self-uri="/-/referrer" id="secondary-app" class="border-l min-w-[320px] max-w-[45vw]"
+        <app-container data-self-uri="/-/referrer" id="secondary-app" class="border-l min-w-[320px] max-w=[45vw]"
                        x-show="open" x-cloak>
           Companion Content
         </app-container>
