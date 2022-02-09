@@ -255,5 +255,9 @@ main {
     @apply flex flex-col pt-1 flex-grow items-center px-4 md:mt-2 opacity-75;
     @apply md:w-full md:pt-0 md:flex-grow-0 md:flex-row;
     @apply hover:bg-gray-700 hover:text-gray-200 hover:opacity-100;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
   }
 }
